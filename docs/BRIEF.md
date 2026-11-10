@@ -29,8 +29,8 @@ mobile-first.
 
 ## Core flows
 Create a jar
-- Celebrant enters display name, birthday (day and month required,
-  year optional, never shown publicly) and an optional email.
+- Celebrant enters display name, birthday (day and month only; no
+  birth year in version one) and an optional email.
 - Chooses visibility: Private (only they read wishes) or Wall
   (wishes are public on the jar page). Can switch later.
 - Chooses whether wishers may stay anonymous. Off by default.
@@ -39,9 +39,10 @@ Create a jar
   - Public link: for sharing with wishers.
   - Private link: secret, for reading and managing the jar. Tell
     them clearly to save it.
-- If an email was given, send them the private link, and allow
-  "I lost my link" recovery to that email. Recovery issues a new
-  private link and cancels the old one.
+- If an email was given, send a "confirm your email" message (it
+  never contains the private link). Once confirmed, allow "I lost
+  my link" recovery to that email. Recovery issues a new private
+  link and cancels the old one. See Decisions, 8 and 9.
 
 Send a wish
 - Public page shows the celebrant's name, a countdown to the
@@ -113,3 +114,58 @@ wishes, see them unlock on their birthday, and come back next
 year to the same jar. A wisher can send a wish in under a minute
 and is invited to start their own jar. All of it works on a
 phone, with no sign-up.
+
+## Decisions (clarifications, round 1)
+These answers refine the brief above. Where they differ, the
+decisions win.
+
+1. **Wording and countdown.** Never say "sealed" to wishers. After
+   sending a wish that will open later, say "Saved for [Name]'s
+   next birthday". From the birthday through day 7, show "It's
+   [Name]'s birthday week" instead of a countdown. On day 8 the
+   countdown jumps to the next birthday.
+2. **Unlock timing.** Everything unlocks at 00:00 in the
+   celebrant's timezone, whatever timezone the wisher is in.
+3. **Changing birthday or timezone.** Wishes keep the birthday year
+   they were filed under. A year that is still sealed unlocks on
+   the new date or in the new timezone. Wishes already unlocked
+   never re-seal.
+4. **Wall content.** The Wall shows only the most recent unlocked
+   year. Older years stay private to the celebrant. Each wish shows
+   the wisher's name, or "Anonymous".
+5. **Visibility modes.** The wish form tells wishers the mode:
+   "Only [Name] will see this" or "This will appear on [Name]'s
+   public wall". The mode is recorded with each wish. A wish
+   written under Private never becomes public. Switching to Wall
+   affects only wishes sent afterwards. Switching to Private hides
+   everything from the Wall at once.
+6. **Name length.** Wisher names are capped at 60 characters.
+7. **Deleting a jar.** Permanent and immediate, behind a strong
+   confirmation (the celebrant types the jar's name). No undo in
+   version one. The public link is never reused and shows a
+   friendly "not found" page.
+8. **Email verification.** At creation, send a "confirm your
+   email" message that does not contain the private link. Email
+   backup works only once confirmed. The private link is shown on
+   screen at creation and is only ever emailed through recovery.
+   Sending domain: not decided yet. Use a test sender in
+   development.
+9. **Recovery.** The response is identical whether or not a jar
+   exists for the email. One email can back several jars. Recovery
+   sends a fresh private link for each jar and cancels the old
+   ones.
+10. **Birthday email.** The jar unlocks at 00:00. The "Your jar is
+    open" email goes out at 08:00 in the celebrant's timezone. A
+    scheduled job is fine. Check how often it can run on the
+    project's Vercel plan, and propose an alternative if it cannot
+    run hourly.
+11. **Countdown format and birth year.** Show days until the final
+    24 hours, then hours and minutes, ticking live. Birth year is
+    removed from version one: ask for day and month only.
+12. **Moderation.** Delete, plus the anonymous on/off switch, is
+    enough for version one. No report or block.
+13. **Public URL.** Random token only. The celebrant's name appears
+    on the page and in the link preview, not in the address.
+14. **Accounts.** A Vercel account exists but is not yet connected
+    to this repository. Supabase, Resend and a domain are not set
+    up. The plan must include setup steps for everything missing.
