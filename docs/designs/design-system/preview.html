@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wishjar design system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF6EC;--surface:#FFFDF8;--text:#2B2420;--muted:#6B5D52;--border:#9A8878;--hairline:#E7DCCB;
+  --primary:#C23B5E;--on-primary:#FFFFFF;--primary-pressed:#A12E4C;--primary-text:#A12E4C;--primary-soft:#F8E1E4;
+  --note-white:#FFFDF8;--note-blush:#F8E1E4;--note-butter:#FBEBD0;
+  --success:#2E6B45;--error:#B3261E;--focus:#2B2420;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1F1A17;--surface:#2A2420;--text:#F5EDE1;--muted:#BCAE9F;--border:#7D6E61;--hairline:#3A322C;
+  --primary-text:#EE8AA3;--primary-soft:#3A2A2E;--note-white:#2F2925;--note-blush:#3A2A2E;--note-butter:#3A3226;--focus:#F5EDE1;}}
+:root[data-theme="dark"]{
+  --bg:#1F1A17;--surface:#2A2420;--text:#F5EDE1;--muted:#BCAE9F;--border:#7D6E61;--hairline:#3A322C;
+  --primary-text:#EE8AA3;--primary-soft:#3A2A2E;--note-white:#2F2925;--note-blush:#3A2A2E;--note-butter:#3A3226;--focus:#F5EDE1;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.55 Figtree,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 16px 64px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.brand{font:700 28px/1 'Bricolage Grotesque';letter-spacing:-.01em}
+.toggle{font:500 14px Figtree;background:none;border:1.5px solid var(--border);color:var(--text);border-radius:12px;padding:8px 14px;cursor:pointer}
+.phones{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.phone{width:360px;min-height:740px;background:var(--bg);border:1px solid var(--hairline);border-radius:32px;padding:28px 20px;position:relative;overflow:hidden}
+.cap{font:500 13px Figtree;color:var(--muted);text-align:center;margin-top:10px}
+.jar{display:block;margin:4px auto 8px;color:var(--text)}
+h1{font:700 2.125rem/1.08 'Bricolage Grotesque';letter-spacing:-.015em;margin:0 0 6px}
+.meta{color:var(--muted);font-size:1rem;margin:0 0 18px}
+.mode{font-size:.9375rem;color:var(--muted);margin:0 0 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip{font:500 .9375rem Figtree;border:1.5px solid var(--primary);background:var(--primary-soft);color:var(--text);border-radius:999px;padding:7px 13px;min-height:40px}
+label{display:block;font:500 .9375rem Figtree;margin:14px 0 6px}
+.field{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font:400 1.0625rem/1.5 Figtree;color:var(--text)}
+textarea.field{height:128px;resize:none}
+.field:focus{outline:2px solid var(--focus);outline-offset:2px}
+.count{font-size:.8125rem;color:var(--muted);text-align:right;margin-top:4px}
+.check{display:flex;align-items:center;gap:10px;margin:12px 0 4px;font-size:1rem}
+.check span{width:22px;height:22px;border:1.5px solid var(--border);border-radius:6px;background:var(--surface)}
+.btn{display:block;width:100%;min-height:52px;border:0;border-radius:12px;background:var(--primary);color:var(--on-primary);font:700 1.0625rem Figtree;margin-top:18px}
+.btn.secondary{background:none;border:1.5px solid var(--text);color:var(--text)}
+.link{display:block;text-align:center;margin-top:14px;color:var(--primary-text);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.center{text-align:center}
+.big{font:700 1.75rem/1.15 'Bricolage Grotesque';margin:8px 0 6px}
+.year{font:700 1.125rem 'Bricolage Grotesque';margin:22px 0 10px;display:flex;justify-content:space-between}
+.year span{font:400 .875rem Figtree;color:var(--muted)}
+.note{padding:14px 16px;border-radius:3px 12px 12px 12px;margin-bottom:12px;font-size:1.0625rem;line-height:1.5}
+.note .who{display:block;font-size:.875rem;color:var(--muted);margin-top:6px}
+.n1{background:var(--note-blush);transform:rotate(-.8deg)}.n2{background:var(--note-butter);transform:rotate(.6deg)}.n3{background:var(--note-white);border:1px solid var(--hairline);transform:rotate(-.4deg)}
+.countdown{font:700 1rem Figtree;color:var(--primary-text)}
+.spec{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.spec h2{font:700 1.25rem 'Bricolage Grotesque';margin:0 0 12px}
+.sw{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:.9375rem}
+.sw i{width:40px;height:40px;border-radius:10px;border:1px solid var(--hairline);flex:none}
+.sw small{color:var(--muted);display:block}
+.voice p{margin:0 0 10px}.voice .bad{color:var(--muted);text-decoration:line-through}
+/* motion */
+@keyframes drop{from{transform:translateY(-70px) rotate(-12deg);opacity:0}to{transform:translateY(0) rotate(-3deg);opacity:1}}
+.dropping{animation:drop 480ms var(--ease-out) both}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+</style></head><body><div class="wrap">
+<header class="top"><div class="brand">Wishjar · design system preview</div>
+<button class="toggle" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">Light / dark</button></header>
+
+<div class="phones">
+<!-- 1. Wish form -->
+<div><div class="phone">
+ <svg class="jar" width="132" height="148" viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M47 21 q44 -4 87 1 q3 9 0 18 q-44 3 -87 -1 q-3 -9 0 -18z"/>
+  <path d="M52 42 q-1 6 -3 11 q-21 17 -21 50 q1 30 0 59 q1 25 27 25 q36 2 71 0 q26 -1 26 -26 q-1 -29 0 -58 q0 -32 -21 -50 q-2 -5 -2 -11"/>
+  <path d="M42 80 q-5 20 -3 40" stroke-width="1.5" opacity=".45"/>
+  <g stroke-width="1.6"><path d="M63 135 l27 -4 l3 18 l-27 4z" fill="var(--note-blush)"/><path d="M96 141 l27 3 l-2 18 l-27 -3z" fill="var(--note-butter)"/><path d="M79 114 l28 1 l-1 18 l-28 -1z" fill="var(--note-white)"/></g>
+ </svg>
+ <h1>Ama's birthday jar</h1>
+ <p class="meta">Opens at midnight on 22 November. Get yours in before then.</p>
+ <p class="mode">Only Ama will see this.</p>
+ <div class="chips"><span class="chip">A memory of us</span><span class="chip">What I love about you</span><span class="chip">My wish for you</span></div>
+ <textarea class="field" aria-label="Your wish">Ama, remember the beach in Ada? Still my favourite day.</textarea>
+ <div class="count">56 / 1000</div>
+ <label for="n">Your name</label><input id="n" class="field" value="Kofi">
+ <div class="check"><span></span>Stay anonymous</div>
+ <button class="btn">Drop it in the jar</button>
+</div><p class="cap">Wish form · public link</p></div>
+
+<!-- 2. Confirmation -->
+<div><div class="phone">
+ <svg class="jar" width="150" height="168" viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:48px">
+  <path d="M47 21 q44 -4 87 1 q3 9 0 18 q-44 3 -87 -1 q-3 -9 0 -18z"/>
+  <path d="M52 42 q-1 6 -3 11 q-21 17 -21 50 q1 30 0 59 q1 25 27 25 q36 2 71 0 q26 -1 26 -26 q-1 -29 0 -58 q0 -32 -21 -50 q-2 -5 -2 -11"/>
+  <g stroke-width="1.6"><path d="M63 135 l27 -4 l3 18 l-27 4z" fill="var(--note-blush)"/><path d="M96 141 l27 3 l-2 18 l-27 -3z" fill="var(--note-butter)"/><path class="dropping" d="M76 92 l28 -2 l2 18 l-28 2z" fill="var(--note-white)"/></g>
+ </svg>
+ <div class="center"><p class="big">Your wish is in.</p><p class="meta">Saved for Ama's next birthday.</p></div>
+ <div style="height:150px"></div>
+ <p class="center" style="margin:0 0 4px">Want a jar like this for your own birthday?</p>
+ <button class="btn">Start my jar</button>
+ <button class="btn secondary" style="margin-top:10px">Start one for a friend</button>
+ <a class="link">No thanks</a>
+</div><p class="cap">Confirmation + invite · note drops in (480 ms)</p></div>
+
+<!-- 3. Celebrant, opened -->
+<div><div class="phone">
+ <svg class="jar" width="120" height="134" viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M60 6 q42 -12 84 -2 q4 9 1 18 q-42 -9 -83 2 q-5 -9 -2 -18z" transform="rotate(-16 100 14)"/>
+  <path d="M52 42 q-1 6 -3 11 q-21 17 -21 50 q1 30 0 59 q1 25 27 25 q36 2 71 0 q26 -1 26 -26 q-1 -29 0 -58 q0 -32 -21 -50 q-2 -5 -2 -11"/>
+  <g stroke-width="1.6"><path d="M63 135 l27 -4 l3 18 l-27 4z" fill="var(--note-blush)"/><path d="M96 141 l27 3 l-2 18 l-27 -3z" fill="var(--note-butter)"/><path d="M82 40 l28 -3 l2 18 l-28 3z" fill="var(--note-white)"/></g>
+ </svg>
+ <div class="center"><p class="big">Happy birthday, Ama.</p><p class="meta">12 wishes were waiting for you.</p></div>
+ <div class="year">2026 <span>12 wishes</span></div>
+ <div class="note n1">Ama, remember the beach in Ada? Still my favourite day.<span class="who">Kofi</span></div>
+ <div class="note n2">You make every room warmer. Have the best year.<span class="who">Efua</span></div>
+ <div class="note n3">Happy birthday!<span class="who">Anonymous</span></div>
+</div><p class="cap">Celebrant view · birthday, lid off</p></div>
+</div>
+
+<div class="spec">
+ <div><h2>Colour</h2>
+  <div class="sw"><i style="background:#FBF6EC"></i><div>Cream · background<small>#FBF6EC · dark #1F1A17</small></div></div>
+  <div class="sw"><i style="background:#FFFDF8"></i><div>Paper · surface, inputs<small>#FFFDF8 · dark #2A2420</small></div></div>
+  <div class="sw"><i style="background:#2B2420"></i><div>Ink · text, jar line<small>#2B2420 · 14.2:1</small></div></div>
+  <div class="sw"><i style="background:#6B5D52"></i><div>Muted · secondary text<small>#6B5D52 · 5.9:1</small></div></div>
+  <div class="sw"><i style="background:#C23B5E"></i><div>Raspberry · the one accent<small>#C23B5E · white on it 5.2:1</small></div></div>
+  <div class="sw"><i style="background:#F8E1E4"></i><div>Blush / butter · note papers<small>#F8E1E4 · #FBEBD0</small></div></div>
+ </div>
+ <div><h2>Type</h2>
+  <p style="font:700 2.125rem/1.08 'Bricolage Grotesque';margin:0 0 8px">Display 34</p>
+  <p style="font:700 1.375rem 'Bricolage Grotesque';margin:0 0 8px">Heading 22</p>
+  <p style="margin:0 0 8px">Body 17 · Figtree 400, line 1.55. Wishes are always set in body type.</p>
+  <p style="font:500 .875rem Figtree;color:var(--muted);margin:0">Label 14 · Figtree 500</p></div>
+ <div class="voice"><h2>Voice</h2>
+  <p>"Opens at midnight on 22 November. Get yours in before then."</p>
+  <p>"Your wish is in."</p>
+  <p class="bad">"Your message has been successfully submitted!"</p>
+  <p class="bad">"Wish sealed 🔒"</p></div>
+</div>
+</div></body></html>
