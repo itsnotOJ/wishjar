@@ -76,6 +76,9 @@ Unknown. The founder hasn't observed what friends and family do with wishes afte
   - The scheduled-job route requires a shared secret stored in Supabase Vault and a Vercel environment variable. Only the `pg_cron` path is built unless the Vercel plan is Pro.
   - Rate-limit IPs are stored only as hashed keys with a 1-hour expiry, outside the event log, and the privacy notice says so.
 
+## Screens and States
+Every screen, state and line of copy is specified in `docs/designs/wishjar-v1-screens.md` (/plan-design-review, decisions DR-D2 to DR-D11).
+
 ## Approaches Considered
 - **A. Minimal jar, no email:** rejected because it drops link recovery and the birthday email, so a lost private link loses a real jar.
 - **B. Full v1, phased by first need:** chosen.

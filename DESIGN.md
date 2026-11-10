@@ -115,6 +115,23 @@ components:
   jar:
     strokeColor: "{colors.text}"
     strokeWidth: 2.6px
+  link-box:
+    backgroundColor: "{colors.surface}"
+    borderColor: "{colors.border}"
+    rounded: "{rounded.md}"
+    minHeight: 48px
+  link-box-secret-label:
+    textColor: "{colors.primary-text}"
+  undo-bar:
+    backgroundColor: "{colors.text}"
+    textColor: "{colors.background}"
+    rounded: "{rounded.md}"
+    minHeight: 48px
+  button-sticky:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.md}"
+    minHeight: 52px
 ---
 
 # Wishjar
@@ -211,6 +228,12 @@ Almost flat. Depth comes from paper colour, not shadows. Surfaces step from back
 
 **Delete jar dialog:** a bottom sheet with a plain warning, a field where the celebrant types the jar's name, and a destructive button in `error` colour that only enables once the name matches.
 
+**Link box:** shows a link in body type on a `surface` field with a 1.5px `border` outline and 12px radius, wrapping long links (never truncated). A secondary "Copy" button sits beside it (below it at 320px); after copying it reads "Copied" for 2 seconds and the change is announced politely. The secret link's box carries a small "Secret" label in `primary-text`. If copying fails: "Couldn't copy. Press and hold the link to copy it."
+
+**Undo bar:** ink background with cream text, 12px radius, 48px tall, pinned to the bottom above the safe area with 16px side margins. Text plus one action, e.g. "Wish deleted. Undo". It stays 6 seconds (paused while focused), is announced politely, and never stacks: a new one replaces the old.
+
+**Sticky button:** a primary button pinned to the bottom of Wall pages ("Add your wish"), full column width, above the safe area, on a `background` strip so content doesn't show through. It hides while the form it points to is on screen.
+
 **States every screen must design for:** loading (the jar outline with no notes, no spinners), empty ("No wishes yet. Share your link and they'll start dropping in."), error (a plain sentence and a retry, with the draft kept), rate limited ("Too many wishes from here right now, try again in a bit."), not found (the jar with its lid off and empty: "This jar isn't here any more."), and very long names (wrap, never truncate the celebrant's name).
 
 ## Motion
@@ -266,4 +289,5 @@ Short, warm and plain, like a friend writing a note. Use the celebrant's name wh
 | 2026-11-10 | Jar: single-line ink sketch | Founder choice over the cloth-top jam jar. Light, scales to any size, and keeps the notes as the only colour |
 | 2026-11-10 | Type: Bricolage Grotesque + Figtree | Founder choice. Playful and modern; avoids the common cream-and-serif look |
 | 2026-11-10 | Memorable thing: the lid opening | Founder answer; every screen stays quiet so the reveal stands out |
+| 2026-11-10 | Link box, undo bar and sticky button added | /plan-design-review DR-D8; screens spec in docs/designs/wishjar-v1-screens.md |
 | 2026-11-10 | Dark mode follows the phone setting | The reveal happens at midnight; light stays the default for daytime chat-app visits |
